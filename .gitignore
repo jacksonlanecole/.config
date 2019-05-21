@@ -31,3 +31,9 @@ xfburn
 xfce4
 xfce4-session
 xubuntu
+
+# Do not remove
+i3/config
+ranger/tagged
+ranger/bookmarks
+ranger/history
