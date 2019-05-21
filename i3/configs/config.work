@@ -34,7 +34,8 @@ set $right l
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-set $mod Mod1
+#set $mod Mod1 # uncomment at work
+set $mod Mod4 # Uncomment at home
 
 # start a terminal
 bindsym $mod+Return exec --no-startup-id kitty
