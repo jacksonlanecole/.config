@@ -61,13 +61,16 @@ font-2 = Hack Nerd Font:style=Medium:size=16;3
 
 ;==Module location=======================================
 
-modules-left = bspwm i3 left xwindow
+modules-left = i3 left xwindow
+;bspwm i3 left xwindow
 modules-center =
-modules-right = right4 ssd right3 memory cpu temperature right2 eth right1 hour date
+modules-right = right4 ssd right3 memory cpu temperature battery right2 wireless-network  right1 hour date
+;eth right1 hour date
 
 tray-position = right
 tray-background = ${colors.back2}
 tray-padding = 2
+tray-reparent = true
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -130,10 +133,10 @@ type = internal/fs
 interval = 25
 
 mount-0 = /
-format-mounted-prefix = "   " 
+format-mounted-prefix = "   "
 format-mounted-prefix-foreground = ${colors.foreground-alt}
 format-mounted-prefix-background = ${colors.back4}
-format-unmounted-prefix = ${self.format-mounted-prefix} 
+format-unmounted-prefix = ${self.format-mounted-prefix}
 format-unmounted-prefix-foreground = ${self.format-mounted-prefix-foreground}
 format-unmounted-prefix-background = ${self.format-mounted-prefix-background}
 
@@ -204,6 +207,58 @@ label-urgent-background = ${colors.foreground}
 label-urgent-foreground = ${colors.alert}
 
 ;======================================================
+; MINE
+; TODO (FIGURE OUT THE BATTERY PERCENTAGE COLOR ISSUE)
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = #ffb52a
+format-charging-background = ${colors.back3}
+format-charging-foreground = ${colors.foreground-alt}
+
+format-discharging = <animation-discharging> <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+format-discharging-background = ${colors.back3}
+format-discharging-foreground = ${colors.foreground-alt}
+
+format-full-prefix = "  "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+format-full-background = ${colors.back3}
+format-full-foreground = ${colors.foreground-alt}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = "  ▁ "
+animation-charging-1 = "  ▂ "
+animation-charging-2 = "  ▃ "
+animation-charging-3 = "  ▄ "
+animation-charging-4 = "  ▅ "
+animation-charging-5 = "  ▆ "
+animation-charging-6 = "  ▇ "
+animation-charging-7 = "  █ "
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 300
+
+animation-discharging-0 = "  █ "
+animation-discharging-1 = "  ▇ "
+animation-discharging-2 = "  ▆ "
+animation-discharging-3 = "  ▅ "
+animation-discharging-4 = "  ▄ "
+animation-discharging-5 = "  ▃ "
+animation-discharging-6 = "  ▂ "
+animation-discharging-7 = "  ▁ "
+animation-discharging-foreground = ${colors.foreground-alt}
+animation-discharging-framerate = 300
+
+;======================================================
 
 [module/cpu]
 
@@ -235,17 +290,17 @@ format-foreground = ${colors.foreground-alt}
 
 ;======================================================
 
-[module/eth]
+[module/wireless-network]
 
 type = internal/network
-interface = enp5s0
+interface = wlp3s0
 interval = 3.0
 
 format-connected-underline = #55aa55
 format-connected-prefix = "   "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 format-connected-prefix-background = ${colors.back2}
-label-connected = " %local_ip%  "
+label-connected = " %essid%  [ %signal%% ] "
 label-connected-background = ${colors.back2}
 label-connected-foreground = ${colors.foreground-alt}
 
@@ -312,7 +367,7 @@ ramp-1 = "   "
 ramp-2 = "   "
 ramp-3 = "   "
 ramp-foreground = ${colors.foreground-alt}
-hwmon-path=/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon0/temp1_input
+hwmon-path=/sys/devices/platform/applesmc.768/temp1_input
 
 ;=====================================================
 
