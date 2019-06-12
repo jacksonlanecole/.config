@@ -64,7 +64,7 @@ font-2 = Hack Nerd Font:style=Medium:size=16;3
 modules-left = i3 left xwindow
 ;bspwm i3 left xwindow
 modules-center =
-modules-right = right4 ssd right3 memory cpu temperature battery right2 wireless-network  right1 hour date
+modules-right = right4 ranger ssd right3 memory cpu temperature battery right2 networkmanager wireless-network  right1 hour date
 ;eth right1 hour date
 
 tray-position = right
@@ -126,6 +126,14 @@ format-foreground = ${colors.foreground-alt}
 #FFFFFFFF
 
 ;========================================================
+[module/ranger]
+type = custom/text
+content = "  R"
+click-left = $TERMINAL $FILE
+;click-left = kitty ranger
+
+content-foreground = ${colors.foreground-alt}
+content-background = ${colors.back4}
 
 [module/ssd]
 
@@ -187,22 +195,28 @@ wrapping-scroll = false
 pin-workspaces = true
 
 ; focused = Active workspace on focused monitor
-label-focused = "  "
-label-focused-background = ${colors.foreground}
-label-focused-foreground = #fafafa
+;label-focused = "  "
+label-focused = %index%
+label-focused-background = #fafafa
+label-focused-foreground = ${colors.foreground}
+label-focused-padding = 3
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = "  "
+;label-unfocused = "  "
+label-unfocused = %index%
 label-unfocused-background = ${colors.foreground}
 label-unfocused-foreground = #fafafa
+label-unfocused-padding = 3
 
 ; visible = Active workspace on unfocused monitor
-label-visible = "  "
+; label-visible = "  "
+label-visible = %index%
 label-visible-background = ${colors.foreground}
 label-visible-foreground = #fafafa
 
 ; urgent = Workspace with urgency hint set
-label-urgent = "  "
+;label-urgent = "  "
+label-urgent = %index%
 label-urgent-background = ${colors.foreground}
 label-urgent-foreground = ${colors.alert}
 
@@ -219,17 +233,20 @@ format-charging = <animation-charging> <label-charging>
 format-charging-underline = #ffb52a
 format-charging-background = ${colors.back3}
 format-charging-foreground = ${colors.foreground-alt}
+label-charging-foreground = ${colors.foreground-alt}
 
 format-discharging = <animation-discharging> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 format-discharging-background = ${colors.back3}
 format-discharging-foreground = ${colors.foreground-alt}
+label-discharging-foreground = ${colors.foreground-alt}
 
 format-full-prefix = "  "
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 format-full-background = ${colors.back3}
 format-full-foreground = ${colors.foreground-alt}
+label-full-foreground = ${colors.foreground-alt}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -276,7 +293,6 @@ label = "%percentage:2%%  "
 ;======================================================
 
 [module/memory]
-
 type = internal/memory
 interval = 2
 format = <label>
@@ -289,9 +305,15 @@ format-foreground = ${colors.foreground-alt}
 
 
 ;======================================================
+[module/networkmanager]
+type = custom/text
+content = "  NWM"
+click-left = networkmanager_dmenu
+
+content-foreground = ${colors.foreground-alt}
+content-background = ${colors.back2}
 
 [module/wireless-network]
-
 type = internal/network
 interface = wlp3s0
 interval = 3.0
@@ -304,6 +326,7 @@ label-connected = " %essid%  [ %signal%% ] "
 label-connected-background = ${colors.back2}
 label-connected-foreground = ${colors.foreground-alt}
 
+; TODO (Jackson Cole <jackson@jacksoncole.io>)
 format-disconnected =
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
