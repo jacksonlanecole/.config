@@ -61,8 +61,7 @@ font-2 = Hack Nerd Font:style=Medium:size=10;3
 
 ;==Module location=======================================
 
-modules-left = i3 left xwindow
-;bspwm i3 left xwindow
+modules-left = i3 xwindow
 modules-center =
 #modules-right = right4 ranger ssd right3 memory cpu temperature battery right2 networkmanager wireless-network  right1 hour date
 modules-right = right4 ranger ssd right3 memory cpu right2 networkmanager wired-network  right1 hour date

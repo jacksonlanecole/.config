@@ -1,31 +1,33 @@
-# i3 config file (v4)
-#
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
-#
-# This config file uses keycodes (bindsym) and was written for the QWERTY
-# layout.
-#
-# To get a config file with the same key positions, but for your current
-# layout, use the i3-config-wizard
-#
+# i3 Config
 
+# TODO (Jackson Cole <jackson@jacksoncole.io>) Make this config file organized
+# and more clear.
+
+# -----------------------------------------------------------------------------
+# Default font settings
+# -----------------------------------------------------------------------------
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:monospace 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans Mono 8
 
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn't scale on retina/hidpi displays.
+# -----------------------------------------------------------------------------
+# Modifier key definition
+# - Mod 1 = ALT
+# - Mod 4 = Super, Command on Apple Keyboards
+# -----------------------------------------------------------------------------
+# uncomment on Non-Apple Keyboards
+#set $mod Mod1
 
-# use these keys for focus, movement, and resize directions when reaching for
-# the arrows is not convenient
+# Uncomment at on Apple Keyboards
+set $mod Mod4
+
+# -----------------------------------------------------------------------------
+# Vim-like directional bindings
+# -----------------------------------------------------------------------------
 set $up k
 set $down j
 set $left h
@@ -56,7 +58,7 @@ bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+t exec --no-startup-id i3-dmenu-desktop
 
 # TODO (Jackson) maybe remove these?
 # change focus
@@ -118,22 +120,22 @@ bindsym $mod+minus scratchpad show
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1 <dev 1>"
-set $ws2 "2 <dev 2>"
-set $ws3 "3 <web>"
-set $ws4 "4 <communication>"
-set $ws5 "5 <monitoring>"
-set $ws6 "6 <music>"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-for_window [class="qutebrowser"] move container to workspace $ws3
-for_window [class="Firefox"] move container to workspace $ws3
-for_window [class="Thunderbird"] move container to workspace $ws4
-for_window [class="Skype"] move container to workspace $ws4
-for_window [class="Spotify"] move container to workspace $ws6
+#for_window [class="qutebrowser"] move container to workspace $ws3
+#for_window [class="Firefox"] move container to workspace $ws3
+#for_window [class="Thunderbird"] move container to workspace $ws4
+#for_window [class="Skype"] move container to workspace $ws4
+#for_window [class="Spotify"] move container to workspace $ws6
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -158,6 +160,9 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+
+#                  >
+bindsym $mod+Shift+period move container to workspace next; workspace next
 
 bindsym $mod+semicolon workspace next
 bindsym $mod+g workspace next
@@ -214,41 +219,31 @@ set $term --no-startup-id terminator
 bindsym $mod+f            fullscreen toggle
 bindsym $mod+Shift+f        mode "$freeze" ;; exec --no-startup-id notify-send "Distraction-free mode activated." "Press Super+Shift+f to return."
 
-# TODO (Jackson) Remove these?
-# bindsym $mod+$Left            focus left
-# bindsym $mod+Shift+$Left        move left 30
-#
-# bindsym $mod+$Down            focus down
-# bindsym $mod+Shift+Down        move down 30
-#
-# bindsym $mod+$Up            focus up
-# bindsym $mod+Shift+Up        move up 30
-#
-# bindsym $mod+$Right            focus right
-# bindsym $mod+Shift+$Right        move right 30
+bindsym $mod+o              gaps outer current plus 5
+bindsym $mod+Shift+o        gaps outer current minus 5
 
-bindsym $mod+z            gaps outer current plus 5
-bindsym $mod+Shift+z        gaps outer current minus 5
+bindsym $mod+i              gaps inner current plus 5
+bindsym $mod+Shift+i        gaps inner current minus 5
 
 bindsym $mod+Shift+d        gaps inner current set 0; gaps outer current set 0
 
-
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-
 bindsym $mod+m move workspace to output left
 
-#######################################################################
-# automatically start i3-config-wizard to offer the user to create a
-# keysym-based config which used their favorite modifier (alt or windows)
-#
-# i3-config-wizard will not launch if there already is a config file
-# in ~/.config/i3/config (or $XDG_CONFIG_HOME/i3/config if set) or
-# ~/.i3/config.
-#
-# Please remove the following exec line:
-#######################################################################
-# exec i3-config-wizard
+#------------------------------------------------------------------------------
+# Pulse Audio controls
+#------------------------------------------------------------------------------
+# Increase volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+# Decrease volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+# Mute volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+
+bindsym F1 exec set_screen_brightness.py --decrease 5
+bindsym F2 exec set_screen_brightness.py --increase 5
+bindsym F4 exec --no-startup-id kitty ranger
+
+#------------------------------------------------------------------------------
+# Starting Polybar
+#------------------------------------------------------------------------------
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
