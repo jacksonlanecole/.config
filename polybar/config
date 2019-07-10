@@ -36,7 +36,45 @@ back4 = #5d5d5d
 
 ;=========================================================
 
-[bar/example]
+[bar/mbp]
+
+monitor = ${env:MONITOR:}
+width = 100%
+height = 32
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+border-color = #00000000
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+;========================================================
+
+font-0 = "Roboto:size=12:weight=bold;2"
+font-1 = "Material Icons:size=16;4"
+font-2 = Hack Nerd Font:style=Medium:size=12;3
+
+;==Module location=======================================
+
+modules-left = i3 xwindow
+modules-center =
+modules-right = ranger ssd memory cpu temperature battery networkmanager wireless-network hour date
+
+tray-position = right
+tray-background = ${colors.back2}
+tray-padding = 2
+tray-reparent = true
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+;=========================================================
+
+[bar/work]
 
 monitor = ${env:MONITOR:}
 width = 100%
@@ -63,9 +101,7 @@ font-2 = Hack Nerd Font:style=Medium:size=10;3
 
 modules-left = i3 xwindow
 modules-center =
-#modules-right = right4 ranger ssd right3 memory cpu temperature battery right2 networkmanager wireless-network  right1 hour date
 modules-right = right4 ranger ssd right3 memory cpu right2 networkmanager wired-network  right1 hour date
-;eth right1 hour date
 
 tray-position = right
 tray-background = ${colors.back2}
@@ -141,14 +177,14 @@ type = internal/fs
 interval = 25
 
 mount-0 = /
-format-mounted-prefix = "   "
+format-mounted-prefix = "     "
 format-mounted-prefix-foreground = ${colors.foreground-alt}
 format-mounted-prefix-background = ${colors.back4}
 format-unmounted-prefix = ${self.format-mounted-prefix}
 format-unmounted-prefix-foreground = ${self.format-mounted-prefix-foreground}
 format-unmounted-prefix-background = ${self.format-mounted-prefix-background}
 
-label-mounted = "%free%  "
+label-mounted = "%free%"
 label-unmounted = "%mountpoint% not mounted  "
 label-unmounted-foreground = ${self.label-mounted-foreground}
 label-unmounted-background = ${self.label-mounted-background}
