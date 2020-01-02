@@ -244,6 +244,16 @@ bindsym F2 exec set_screen_brightness.py --increase 5
 bindsym F4 exec --no-startup-id kitty ranger
 
 #------------------------------------------------------------------------------
+# Locking Screen
+#------------------------------------------------------------------------------
+bindsym $mod+Shift+x exec i3lock --color=000000
+
+#------------------------------------------------------------------------------
+# Screen Capture
+#------------------------------------------------------------------------------
+bindsym $mod+Shift+s exec ffcast -q -# "$(xdotool getactivewindow)" png /tmp/"$(date +%F_%T)".png
+
+#------------------------------------------------------------------------------
 # Starting Polybar
 #------------------------------------------------------------------------------
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
