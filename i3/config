@@ -257,3 +257,4 @@ bindsym $mod+Shift+s exec ffcast -q -# "$(xdotool getactivewindow)" png /tmp/"$(
 # Starting Polybar
 #------------------------------------------------------------------------------
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-start-up dunst
