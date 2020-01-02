@@ -45,7 +45,7 @@ set $altmod Mod4
 #set $altmod Mod1
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id kitty
+bindsym $mod+Return exec --no-startup-id alacritty
 
 # start a browser
 bindsym $mod+b exec --no-startup-id qutebrowser
