@@ -48,7 +48,7 @@ set $altmod Mod4
 bindsym $mod+Return exec --no-startup-id alacritty
 
 # start a browser
-bindsym $mod+b exec --no-startup-id qutebrowser
+bindsym $mod+b exec --no-startup-id firefox
 
 # kill focused window
 bindsym $mod+Shift+q kill
