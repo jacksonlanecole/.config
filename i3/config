@@ -45,10 +45,10 @@ set $altmod Mod4
 #set $altmod Mod1
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id kitty
+bindsym $mod+Return exec --no-startup-id alacritty
 
 # start a browser
-bindsym $mod+b exec --no-startup-id qutebrowser
+bindsym $mod+b exec --no-startup-id firefox
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -244,6 +244,17 @@ bindsym F2 exec set_screen_brightness.py --increase 5
 bindsym F4 exec --no-startup-id kitty ranger
 
 #------------------------------------------------------------------------------
+# Locking Screen
+#------------------------------------------------------------------------------
+bindsym $mod+Shift+x exec i3lock --color=000000
+
+#------------------------------------------------------------------------------
+# Screen Capture
+#------------------------------------------------------------------------------
+bindsym $mod+Shift+s exec ffcast -q -# "$(xdotool getactivewindow)" png /tmp/"$(date +%F_%T)".png
+
+#------------------------------------------------------------------------------
 # Starting Polybar
 #------------------------------------------------------------------------------
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-start-up dunst
