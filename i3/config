@@ -203,12 +203,12 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-#bar {
-#        font hack 10
-#        status_command i3status
-#        mode dock
-#        modifier None
-#}
+bar {
+    status_command i3blocks
+    mode dock
+    position top
+    modifier None
+}
 
 # Basic Definitions
 for_window [class="^.*"] border pixel 3
@@ -256,5 +256,4 @@ bindsym $mod+Shift+s exec ffcast -q -# "$(xdotool getactivewindow)" png /tmp/"$(
 #------------------------------------------------------------------------------
 # Starting Polybar
 #------------------------------------------------------------------------------
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-start-up dunst
