@@ -1,0 +1,43 @@
+# i3blocks configuration file
+#
+# The i3blocks man page describes the usage of the binary,
+# and its website describes the configuration:
+#
+#     https://vivien.github.io/i3blocks
+
+
+# Global properties
+separator=true
+separator_block_width=32
+
+[documentation]
+full_text=Documentation
+website=https://vivien.github.io/i3blocks
+command=xdg-open "$website"
+color=#f12711
+
+[wifi]
+command=nmcli connection show | grep wlp3s0 | cut -f1 -d' '
+interval=2
+
+[ip]
+command=hostname -i | xargs echo "ip:"
+interval=60
+
+[battery]
+command=battery
+interval=5
+
+[date]
+command=date '+%Y-%m-%d'
+interval=10
+
+[time]
+command=date '+%I:%M %p'
+interval=1
+
+[greetings]
+color=#f5af19
+command=echo "Hello, $USER!"
+interval=once
+
