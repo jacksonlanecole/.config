@@ -37,15 +37,15 @@ set $right l
 floating_modifier $mod
 
 # uncomment at work
-set $mod Mod1
-set $altmod Mod4
+#set $mod Mod1
+#set $altmod Mod4
 #
-## Uncomment at home
-#set $mod Mod4
-#set $altmod Mod1
+## Uncomment at home (sets $mod = Mod4 = Command
+set $mod Mod4
+set $altmod Mod1
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Return exec --no-startup-id urxvt
 
 # start a browser
 bindsym $mod+b exec --no-startup-id firefox
@@ -228,6 +228,10 @@ bindsym $mod+Shift+i        gaps inner current minus 5
 bindsym $mod+Shift+d        gaps inner current set 0; gaps outer current set 0
 
 bindsym $mod+m move workspace to output left
+bindsym $mod+Shift+m move workspace to output right
+
+bindsym $mod+n move workspace to output up
+bindsym $mod+Shift+n move workspace to output down
 
 #------------------------------------------------------------------------------
 # Pulse Audio controls
@@ -246,7 +250,7 @@ bindsym F4 exec --no-startup-id kitty ranger
 #------------------------------------------------------------------------------
 # Locking Screen
 #------------------------------------------------------------------------------
-bindsym $mod+Shift+x exec i3lock --color=000000
+bindsym $mod+Shift+x exec i3lock --color=1B1D1E && systemctl suspend
 
 #------------------------------------------------------------------------------
 # Screen Capture
